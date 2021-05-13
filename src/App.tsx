@@ -1,25 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline, Grid, Typography } from "@material-ui/core";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { AppContent } from "./components/AppContent";
+import Content from "./components/Content";
+import NavBar from "./components/NavBar";
+import NumericDisplay from "./components/NumericDisplay";
+import { lightTheme } from "./styles/themes/light";
+
+const useStyles = makeStyles(() => ({
+  title: {
+    fontWeight: "bold",
+  },
+  numDisplayRoot: {
+    display: "flex",
+  },
+  numDisplayIcon: {
+    width: 100,
+    height: 100,
+  },
+}));
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={lightTheme}>
+      <CssBaseline />
+
+      <AppContent>
+        <NavBar />
+
+        <Content>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Typography variant="h5" className={classes.title}>
+                Dashboard
+              </Typography>
+            </Grid>
+
+            <Grid item sm={6} md={3}>
+              <NumericDisplay color="#5B93FF" />
+            </Grid>
+            <Grid item sm={6} md={3}>
+              <NumericDisplay color="#5B93FF" />
+            </Grid>
+            <Grid item sm={6} md={3}>
+              <NumericDisplay color="#5B93FF" />
+            </Grid>
+            <Grid item sm={6} md={3}>
+              <NumericDisplay color="#5B93FF" />
+            </Grid>
+          </Grid>
+        </Content>
+      </AppContent>
+    </ThemeProvider>
   );
 }
 
